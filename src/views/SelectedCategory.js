@@ -17,6 +17,8 @@ const SelectedCategory = ({ match }) => {
   const categoryFormatted = Store.formatString(categoryEng);
   const groupFormatted = Store.formatString(group);
   const vocabs = categoryEng === "new" ? Store.getNewSigns() : Store.getVocabList(groupFormatted, categoryFormatted);
+  const title = categoryEng === "new" ? groupFormatted : categoryFormatted
+
   // return Error page if no Vocabs are returned
   if (vocabs.length === 0) return <ComingSoon />;
 
@@ -29,7 +31,7 @@ const SelectedCategory = ({ match }) => {
       >
         <Row noGutters className="page-header py-4">
           <PageTitle
-            title={t(categoryFormatted)}
+            title={t(title)}
             md="12"
             className="ml-sm-auto mr-sm-auto"
           />
