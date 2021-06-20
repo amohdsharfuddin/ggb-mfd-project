@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardBody, Col } from "shards-react";
 import { useTranslation } from "react-i18next";
+import { Redirect } from 'react-router';
 
 import { Store } from "../../flux";
 
@@ -11,11 +12,16 @@ const GroupDetail = ({ category, group }) => {
 
   const groupFormatted = Store.formatString(group);
   const categoryFormatted = Store.formatString(category.category);
+  const basePath = `/groups/${groupFormatted}`
+
+  if (window.location.pathname.split("/").pop() === "new-signs"){
+    return <Redirect to={`${basePath}/new`}/>
+  }
 
   return (
     <Col lg="6" sm="12">
       <div className="category-detail-card-wrapper">
-        <Link to={`/groups/${groupFormatted}/${categoryFormatted}`}>
+        <Link to={`${basePath}/${categoryFormatted}`}>
           <Card small className="card-post card-post--aside card-post--1">
             <Col lg="6" md="6" sm="6">
               <div

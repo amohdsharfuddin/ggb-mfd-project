@@ -16,7 +16,7 @@ const SelectedCategory = ({ match }) => {
 
   const categoryFormatted = Store.formatString(categoryEng);
   const groupFormatted = Store.formatString(group);
-  const vocabs = Store.getVocabList(groupFormatted, categoryFormatted);
+  const vocabs = categoryEng === "new" ? Store.getNewSigns() : Store.getVocabList(groupFormatted, categoryFormatted);
   // return Error page if no Vocabs are returned
   if (vocabs.length === 0) return <ComingSoon />;
 
